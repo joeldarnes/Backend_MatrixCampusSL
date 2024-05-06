@@ -1,0 +1,11 @@
+image:
+  file: .gitpod.Dockerfile
+
+tasks:
+  - init: echo 'Starting project setup...'
+  - command: >
+      echo 'Installing dependencies...' &&
+      cd Backend_MatrixCampusSL &&
+      mvn install &&
+      echo 'Starting Spring Boot application...' &&
+      mvn spring-boot:run
