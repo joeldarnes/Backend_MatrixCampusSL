@@ -36,8 +36,6 @@ public class Price {
     @Column(name = "currency", nullable = false, length = 3)
     private String currency;
 
-    // Getters and Setters
-
     public Long getId() {
         return id;
     }

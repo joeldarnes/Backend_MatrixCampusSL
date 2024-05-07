@@ -1,1 +1,0 @@
-INSERT INTO prices (product_id, brand_id, start_date, end_date, price, priority, currency, price_list) VALUES (1, 1, '2024-05-01T00:00:00', '2024-05-31T23:59:59', 100.00, 10, 'EUR', 1);
