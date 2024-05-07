@@ -4,14 +4,11 @@ import com.MatrixCampusSL.demo.model.Price;
 import com.MatrixCampusSL.demo.service.PriceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Optional;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/prices")
@@ -21,15 +18,25 @@ public class PriceController {
     private PriceService priceService;
 
     @GetMapping
-    public ResponseEntity<?> getPrice(
-            @RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime date,
+    public ResponseEntity<?> getPrices(
+            @RequestParam("date") LocalDateTime date,
             @RequestParam("productId") Integer productId,
             @RequestParam("brandId") Integer brandId) {
-        Optional<Price> price = priceService.findApplicablePrice(date, productId, brandId);
-        if (!price.isPresent()) {
+        List<Price> prices = priceService.findApplicablePrices(date, productId, brandId);
+        if (prices.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(price.get());
+
+        Price bestPrice = prices.get(0); // Assuming the list is sorted by priority
+        var result = new Object() {
+            public final Integer productId = bestPrice.getProductId();
+            public final Integer brandId = bestPrice.getBrandId();
+            public final Integer priceList = bestPrice.getPriceList();
+            public final LocalDateTime startDate = bestPrice.getStartDate();
+            public final LocalDateTime endDate = bestPrice.getEndDate();
+            public final BigDecimal finalPrice = bestPrice.getPrice();
+        };
+
+        return ResponseEntity.ok(result);
     }
 }
-
