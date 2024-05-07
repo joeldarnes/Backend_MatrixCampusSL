@@ -3,11 +3,13 @@ package com.MatrixCampusSL.demo.controller;
 import com.MatrixCampusSL.demo.model.Price;
 import com.MatrixCampusSL.demo.service.PriceService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.List;
 
 @RestController
@@ -19,15 +21,21 @@ public class PriceController {
 
     @GetMapping
     public ResponseEntity<?> getPrices(
-            @RequestParam("date") LocalDateTime date,
+            @RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime date,
             @RequestParam("productId") Integer productId,
             @RequestParam("brandId") Integer brandId) {
+
         List<Price> prices = priceService.findApplicablePrices(date, productId, brandId);
+
         if (prices.isEmpty()) {
             return ResponseEntity.notFound().build();
         }
 
-        Price bestPrice = prices.get(0); // Assuming the list is sorted by priority
+        // Assumption: prices are sorted by priority in the service
+        Price bestPrice = prices.stream()
+                                .max(Comparator.comparingInt(Price::getPriority))
+                                .orElseThrow();
+
         var result = new Object() {
             public final Integer productId = bestPrice.getProductId();
             public final Integer brandId = bestPrice.getBrandId();
