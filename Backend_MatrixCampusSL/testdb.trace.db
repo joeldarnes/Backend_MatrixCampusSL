@@ -1,0 +1,3 @@
+2024-05-07 19:46:28.641846Z jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PRICE" not found; SQL statement:
+select * from Price [42102-224]
