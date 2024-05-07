@@ -19,3 +19,6 @@ logging:
       springframework:
         web: DEBUG
       hibernate: DEBUG
+    com:
+      MatrixCampusSL:
+        demo: DEBUG

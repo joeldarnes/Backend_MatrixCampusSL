@@ -11,10 +11,14 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @RestController
 @RequestMapping("/api/prices")
 public class PriceController {
+
+    private static final Logger log = LoggerFactory.getLogger(PriceController.class);
 
     @Autowired
     private PriceService priceService;
@@ -25,16 +29,21 @@ public class PriceController {
             @RequestParam("productId") Integer productId,
             @RequestParam("brandId") Integer brandId) {
 
+        log.info("Received request - Date: {}, ProductID: {}, BrandID: {}", date, productId, brandId);
+
         List<Price> prices = priceService.findApplicablePrices(date, productId, brandId);
+        log.info("Found {} applicable prices", prices.size());
 
         if (prices.isEmpty()) {
+            log.warn("No prices found for the given parameters.");
             return ResponseEntity.notFound().build();
         }
 
-        // Assumption: prices are sorted by priority in the service
         Price bestPrice = prices.stream()
                                 .max(Comparator.comparingInt(Price::getPriority))
                                 .orElseThrow();
+
+        log.info("Best price details: {}", bestPrice);
 
         var result = new Object() {
             public final Integer productId = bestPrice.getProductId();
