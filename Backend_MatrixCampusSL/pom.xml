@@ -7,7 +7,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.2.5</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath/>
     </parent>
     <groupId>com.MatrixCampusSL</groupId>
     <artifactId>demo</artifactId>
@@ -20,7 +20,6 @@
         <flyway.url>jdbc:h2:./testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE</flyway.url>
         <flyway.user>sa</flyway.user>
         <flyway.password></flyway.password>
-        <!-- Habilitar la configuración para Flyway -->
         <flyway.cleanDisabled>false</flyway.cleanDisabled>
     </properties>
 
@@ -64,7 +63,6 @@
                     <url>${flyway.url}</url>
                     <user>${flyway.user}</user>
                     <password>${flyway.password}</password>
-                    <!-- Incluir configuración de cleanDisabled -->
                     <cleanDisabled>${flyway.cleanDisabled}</cleanDisabled>
                 </configuration>
             </plugin>
