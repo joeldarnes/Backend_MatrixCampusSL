@@ -7,7 +7,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.2.5</version>
-        <relativePath/>
+        <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.MatrixCampusSL</groupId>
     <artifactId>demo</artifactId>
@@ -17,6 +17,11 @@
 
     <properties>
         <java.version>17</java.version>
+        <flyway.url>jdbc:h2:./testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE</flyway.url>
+        <flyway.user>sa</flyway.user>
+        <flyway.password></flyway.password>
+        <!-- Habilitar la configuración para Flyway -->
+        <flyway.cleanDisabled>false</flyway.cleanDisabled>
     </properties>
 
     <dependencies>
@@ -31,6 +36,7 @@
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
+            <version>2.2.220</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -49,6 +55,18 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-maven-plugin</artifactId>
+                <version>9.22.3</version>
+                <configuration>
+                    <url>${flyway.url}</url>
+                    <user>${flyway.user}</user>
+                    <password>${flyway.password}</password>
+                    <!-- Incluir configuración de cleanDisabled -->
+                    <cleanDisabled>${flyway.cleanDisabled}</cleanDisabled>
+                </configuration>
             </plugin>
         </plugins>
     </build>

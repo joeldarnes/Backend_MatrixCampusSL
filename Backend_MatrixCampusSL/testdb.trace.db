@@ -1,3 +1,950 @@
 2024-05-07 19:46:28.641846Z jdbc[13]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PRICE" not found; SQL statement:
 select * from Price [42102-224]
+2024-05-08 17:20:02.236172+02:00 database: flush
+org.h2.message.DbException: GeneralError
+	at org.h2.message.DbException.convert(DbException.java:412)
+	at org.h2.mvstore.db.Store.lambda$new$0(Store.java:122)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:1546)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:371)
+	at org.h2.mvstore.FileStore.serializeAndStore(FileStore.java:1441)
+	at org.h2.mvstore.FileStore.lambda$storeIt$2(FileStore.java:1376)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+	Suppressed: java.lang.NoClassDefFoundError: org/h2/api/ErrorCode
+		at org.h2.message.DbException.getJdbcSQLException(DbException.java:487)
+		at org.h2.message.DbException.get(DbException.java:212)
+		at org.h2.message.DbException.convert(DbException.java:407)
+		... 10 more
+	Caused by: java.lang.ClassNotFoundException: org.h2.api.ErrorCode
+		at org.codehaus.plexus.classworlds.strategy.SelfFirstStrategy.loadClass(SelfFirstStrategy.java:50)
+		at org.codehaus.plexus.classworlds.realm.ClassRealm.unsynchronizedLoadClass(ClassRealm.java:271)
+		at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:247)
+		at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:239)
+		... 13 more
+Caused by: java.sql.SQLException: GeneralError
+	... 11 more
+Caused by: org.h2.mvstore.MVStoreException: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer [2.2.224/3]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
+	... 7 more
+Caused by: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer
+	at org.h2.mvstore.FileStore.getWriteBuffer(FileStore.java:1202)
+	at org.h2.mvstore.FileStore.serializeAndStore(FileStore.java:1424)
+	... 6 more
+Caused by: java.lang.ClassNotFoundException: org.h2.mvstore.WriteBuffer
+	at org.codehaus.plexus.classworlds.strategy.SelfFirstStrategy.loadClass(SelfFirstStrategy.java:50)
+	at org.codehaus.plexus.classworlds.realm.ClassRealm.unsynchronizedLoadClass(ClassRealm.java:271)
+	at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:247)
+	at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:239)
+	... 8 more
+2024-05-08 17:20:02.247328+02:00 database: could not close the database
+org.h2.mvstore.MVStoreException: java.util.concurrent.ExecutionException: org.h2.mvstore.MVStoreException: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer [2.2.224/3] [2.2.224/3]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
+	at org.h2.mvstore.MVStore.storeNow(MVStore.java:852)
+	at org.h2.mvstore.MVStore.store(MVStore.java:808)
+	at org.h2.mvstore.MVStore.commit(MVStore.java:778)
+	at org.h2.mvstore.MVStore.commit(MVStore.java:770)
+	at org.h2.mvstore.db.Store.flush(Store.java:242)
+	at org.h2.engine.Database.checkpoint(Database.java:2249)
+	at org.h2.engine.Database.onShutdown(Database.java:1161)
+	at org.h2.engine.OnExitDatabaseCloser.onShutdown(OnExitDatabaseCloser.java:85)
+	at org.h2.engine.OnExitDatabaseCloser.run(OnExitDatabaseCloser.java:114)
+Caused by: java.util.concurrent.ExecutionException: org.h2.mvstore.MVStoreException: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer [2.2.224/3]
+	at java.base/java.util.concurrent.FutureTask.report(FutureTask.java:122)
+	at java.base/java.util.concurrent.FutureTask.get(FutureTask.java:191)
+	at org.h2.mvstore.FileStore.submitOrRun(FileStore.java:1392)
+	at org.h2.mvstore.FileStore.storeIt(FileStore.java:1375)
+	at org.h2.mvstore.MVStore.storeNow(MVStore.java:843)
+	... 8 more
+Caused by: org.h2.mvstore.MVStoreException: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer [2.2.224/3]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
+	at org.h2.mvstore.FileStore.serializeAndStore(FileStore.java:1441)
+	at org.h2.mvstore.FileStore.lambda$storeIt$2(FileStore.java:1376)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer
+	at org.h2.mvstore.FileStore.getWriteBuffer(FileStore.java:1202)
+	at org.h2.mvstore.FileStore.serializeAndStore(FileStore.java:1424)
+	... 6 more
+Caused by: java.lang.ClassNotFoundException: org.h2.mvstore.WriteBuffer
+	at org.codehaus.plexus.classworlds.strategy.SelfFirstStrategy.loadClass(SelfFirstStrategy.java:50)
+	at org.codehaus.plexus.classworlds.realm.ClassRealm.unsynchronizedLoadClass(ClassRealm.java:271)
+	at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:247)
+	at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:239)
+	... 8 more
+2024-05-08 17:20:59.625336+02:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "DELETE [*]* FROM PRICES"; se esperaba "identifier"
+Syntax error in SQL statement "DELETE [*]* FROM PRICES"; expected "identifier"; SQL statement:
+DELETE * FROM PRICES [42001-224]
+2024-05-08 17:25:31.127951+02:00 database: flush
+org.h2.message.DbException: GeneralError
+	at org.h2.message.DbException.convert(DbException.java:412)
+	at org.h2.mvstore.db.Store.lambda$new$0(Store.java:122)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:1546)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:371)
+	at org.h2.mvstore.FileStore.serializeAndStore(FileStore.java:1441)
+	at org.h2.mvstore.FileStore.lambda$storeIt$2(FileStore.java:1376)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+	Suppressed: java.lang.NoClassDefFoundError: org/h2/api/ErrorCode
+		at org.h2.message.DbException.getJdbcSQLException(DbException.java:487)
+		at org.h2.message.DbException.get(DbException.java:212)
+		at org.h2.message.DbException.convert(DbException.java:407)
+		... 10 more
+	Caused by: java.lang.ClassNotFoundException: org.h2.api.ErrorCode
+		at org.codehaus.plexus.classworlds.strategy.SelfFirstStrategy.loadClass(SelfFirstStrategy.java:50)
+		at org.codehaus.plexus.classworlds.realm.ClassRealm.unsynchronizedLoadClass(ClassRealm.java:271)
+		at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:247)
+		at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:239)
+		... 13 more
+Caused by: java.sql.SQLException: GeneralError
+	... 11 more
+Caused by: org.h2.mvstore.MVStoreException: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer [2.2.224/3]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
+	... 7 more
+Caused by: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer
+	at org.h2.mvstore.FileStore.getWriteBuffer(FileStore.java:1202)
+	at org.h2.mvstore.FileStore.serializeAndStore(FileStore.java:1424)
+	... 6 more
+Caused by: java.lang.ClassNotFoundException: org.h2.mvstore.WriteBuffer
+	at org.codehaus.plexus.classworlds.strategy.SelfFirstStrategy.loadClass(SelfFirstStrategy.java:50)
+	at org.codehaus.plexus.classworlds.realm.ClassRealm.unsynchronizedLoadClass(ClassRealm.java:271)
+	at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:247)
+	at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:239)
+	... 8 more
+2024-05-08 17:25:31.135006+02:00 database: could not close the database
+org.h2.mvstore.MVStoreException: java.util.concurrent.ExecutionException: org.h2.mvstore.MVStoreException: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer [2.2.224/3] [2.2.224/3]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
+	at org.h2.mvstore.MVStore.storeNow(MVStore.java:852)
+	at org.h2.mvstore.MVStore.store(MVStore.java:808)
+	at org.h2.mvstore.MVStore.commit(MVStore.java:778)
+	at org.h2.mvstore.MVStore.commit(MVStore.java:770)
+	at org.h2.mvstore.db.Store.flush(Store.java:242)
+	at org.h2.engine.Database.checkpoint(Database.java:2249)
+	at org.h2.engine.Database.onShutdown(Database.java:1161)
+	at org.h2.engine.OnExitDatabaseCloser.onShutdown(OnExitDatabaseCloser.java:85)
+	at org.h2.engine.OnExitDatabaseCloser.run(OnExitDatabaseCloser.java:114)
+Caused by: java.util.concurrent.ExecutionException: org.h2.mvstore.MVStoreException: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer [2.2.224/3]
+	at java.base/java.util.concurrent.FutureTask.report(FutureTask.java:122)
+	at java.base/java.util.concurrent.FutureTask.get(FutureTask.java:191)
+	at org.h2.mvstore.FileStore.submitOrRun(FileStore.java:1392)
+	at org.h2.mvstore.FileStore.storeIt(FileStore.java:1375)
+	at org.h2.mvstore.MVStore.storeNow(MVStore.java:843)
+	... 8 more
+Caused by: org.h2.mvstore.MVStoreException: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer [2.2.224/3]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
+	at org.h2.mvstore.FileStore.serializeAndStore(FileStore.java:1441)
+	at org.h2.mvstore.FileStore.lambda$storeIt$2(FileStore.java:1376)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer
+	at org.h2.mvstore.FileStore.getWriteBuffer(FileStore.java:1202)
+	at org.h2.mvstore.FileStore.serializeAndStore(FileStore.java:1424)
+	... 6 more
+Caused by: java.lang.ClassNotFoundException: org.h2.mvstore.WriteBuffer
+	at org.codehaus.plexus.classworlds.strategy.SelfFirstStrategy.loadClass(SelfFirstStrategy.java:50)
+	at org.codehaus.plexus.classworlds.realm.ClassRealm.unsynchronizedLoadClass(ClassRealm.java:271)
+	at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:247)
+	at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:239)
+	... 8 more
+2024-05-08 17:25:47.407197+02:00 database: flush
+org.h2.message.DbException: GeneralError
+	at org.h2.message.DbException.convert(DbException.java:412)
+	at org.h2.mvstore.db.Store.lambda$new$0(Store.java:122)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:1546)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:371)
+	at org.h2.mvstore.FileStore.serializeAndStore(FileStore.java:1441)
+	at org.h2.mvstore.FileStore.lambda$storeIt$2(FileStore.java:1376)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+	Suppressed: java.lang.NoClassDefFoundError: org/h2/api/ErrorCode
+		at org.h2.message.DbException.getJdbcSQLException(DbException.java:487)
+		at org.h2.message.DbException.get(DbException.java:212)
+		at org.h2.message.DbException.convert(DbException.java:407)
+		... 10 more
+	Caused by: java.lang.ClassNotFoundException: org.h2.api.ErrorCode
+		at org.codehaus.plexus.classworlds.strategy.SelfFirstStrategy.loadClass(SelfFirstStrategy.java:50)
+		at org.codehaus.plexus.classworlds.realm.ClassRealm.unsynchronizedLoadClass(ClassRealm.java:271)
+		at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:247)
+		at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:239)
+		... 13 more
+Caused by: java.sql.SQLException: GeneralError
+	... 11 more
+Caused by: org.h2.mvstore.MVStoreException: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer [2.2.224/3]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
+	... 7 more
+Caused by: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer
+	at org.h2.mvstore.FileStore.getWriteBuffer(FileStore.java:1202)
+	at org.h2.mvstore.FileStore.serializeAndStore(FileStore.java:1424)
+	... 6 more
+Caused by: java.lang.ClassNotFoundException: org.h2.mvstore.WriteBuffer
+	at org.codehaus.plexus.classworlds.strategy.SelfFirstStrategy.loadClass(SelfFirstStrategy.java:50)
+	at org.codehaus.plexus.classworlds.realm.ClassRealm.unsynchronizedLoadClass(ClassRealm.java:271)
+	at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:247)
+	at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:239)
+	... 8 more
+2024-05-08 17:25:47.414225+02:00 database: could not close the database
+org.h2.mvstore.MVStoreException: java.util.concurrent.ExecutionException: org.h2.mvstore.MVStoreException: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer [2.2.224/3] [2.2.224/3]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
+	at org.h2.mvstore.MVStore.storeNow(MVStore.java:852)
+	at org.h2.mvstore.MVStore.store(MVStore.java:808)
+	at org.h2.mvstore.MVStore.commit(MVStore.java:778)
+	at org.h2.mvstore.MVStore.commit(MVStore.java:770)
+	at org.h2.mvstore.db.Store.flush(Store.java:242)
+	at org.h2.engine.Database.checkpoint(Database.java:2249)
+	at org.h2.engine.Database.onShutdown(Database.java:1161)
+	at org.h2.engine.OnExitDatabaseCloser.onShutdown(OnExitDatabaseCloser.java:85)
+	at org.h2.engine.OnExitDatabaseCloser.run(OnExitDatabaseCloser.java:114)
+Caused by: java.util.concurrent.ExecutionException: org.h2.mvstore.MVStoreException: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer [2.2.224/3]
+	at java.base/java.util.concurrent.FutureTask.report(FutureTask.java:122)
+	at java.base/java.util.concurrent.FutureTask.get(FutureTask.java:191)
+	at org.h2.mvstore.FileStore.submitOrRun(FileStore.java:1392)
+	at org.h2.mvstore.FileStore.storeIt(FileStore.java:1375)
+	at org.h2.mvstore.MVStore.storeNow(MVStore.java:843)
+	... 8 more
+Caused by: org.h2.mvstore.MVStoreException: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer [2.2.224/3]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
+	at org.h2.mvstore.FileStore.serializeAndStore(FileStore.java:1441)
+	at org.h2.mvstore.FileStore.lambda$storeIt$2(FileStore.java:1376)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer
+	at org.h2.mvstore.FileStore.getWriteBuffer(FileStore.java:1202)
+	at org.h2.mvstore.FileStore.serializeAndStore(FileStore.java:1424)
+	... 6 more
+Caused by: java.lang.ClassNotFoundException: org.h2.mvstore.WriteBuffer
+	at org.codehaus.plexus.classworlds.strategy.SelfFirstStrategy.loadClass(SelfFirstStrategy.java:50)
+	at org.codehaus.plexus.classworlds.realm.ClassRealm.unsynchronizedLoadClass(ClassRealm.java:271)
+	at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:247)
+	at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:239)
+	... 8 more
+2024-05-08 17:27:00.111847+02:00 database: wrong user or password; user: "SA"
+org.h2.message.DbException: Nombre de usuario ó password incorrecto
+Wrong user name or password [28000-224]
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.get(DbException.java:188)
+	at org.h2.engine.Engine.openSession(Engine.java:154)
+	at org.h2.engine.Engine.openSession(Engine.java:222)
+	at org.h2.engine.Engine.createSession(Engine.java:201)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:343)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:125)
+	at org.h2.util.JdbcUtils.getConnection(JdbcUtils.java:288)
+	at org.h2.server.web.WebServer.getConnection(WebServer.java:811)
+	at org.h2.server.web.WebApp.login(WebApp.java:1039)
+	at org.h2.server.web.WebApp.process(WebApp.java:227)
+	at org.h2.server.web.WebApp.processRequest(WebApp.java:177)
+	at org.h2.server.web.JakartaWebServlet.doGet(JakartaWebServlet.java:129)
+	at org.h2.server.web.JakartaWebServlet.doPost(JakartaWebServlet.java:166)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:206)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:175)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:175)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:175)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:175)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:150)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:896)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1736)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: org.h2.jdbc.JdbcSQLInvalidAuthorizationSpecException: Nombre de usuario ó password incorrecto
+Wrong user name or password [28000-224]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:522)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	... 50 more
+2024-05-08 17:27:45.690864+02:00 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "PRICES" ya existe
+Table "PRICES" already exists; SQL statement:
+CREATE TABLE prices (
+                        id INT AUTO_INCREMENT PRIMARY KEY,
+                        product_id INT NOT NULL,
+                        brand_id INT NOT NULL,
+                        start_date TIMESTAMP NOT NULL,
+                        end_date TIMESTAMP NOT NULL,
+                        price DECIMAL(10, 2) NOT NULL,
+                        priority INT,
+                        currency VARCHAR(3) NOT NULL,
+                        price_list INT
+) [42101-224]
+2024-05-08 17:37:55.671426+02:00 database: flush
+org.h2.message.DbException: GeneralError
+	at org.h2.message.DbException.convert(DbException.java:412)
+	at org.h2.mvstore.db.Store.lambda$new$0(Store.java:122)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:1546)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:371)
+	at org.h2.mvstore.FileStore.serializeAndStore(FileStore.java:1441)
+	at org.h2.mvstore.FileStore.lambda$storeIt$2(FileStore.java:1376)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+	Suppressed: java.lang.NoClassDefFoundError: org/h2/api/ErrorCode
+		at org.h2.message.DbException.getJdbcSQLException(DbException.java:487)
+		at org.h2.message.DbException.get(DbException.java:212)
+		at org.h2.message.DbException.convert(DbException.java:407)
+		... 10 more
+	Caused by: java.lang.ClassNotFoundException: org.h2.api.ErrorCode
+		at org.codehaus.plexus.classworlds.strategy.SelfFirstStrategy.loadClass(SelfFirstStrategy.java:50)
+		at org.codehaus.plexus.classworlds.realm.ClassRealm.unsynchronizedLoadClass(ClassRealm.java:271)
+		at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:247)
+		at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:239)
+		... 13 more
+Caused by: java.sql.SQLException: GeneralError
+	... 11 more
+Caused by: org.h2.mvstore.MVStoreException: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer [2.2.224/3]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
+	... 7 more
+Caused by: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer
+	at org.h2.mvstore.FileStore.getWriteBuffer(FileStore.java:1202)
+	at org.h2.mvstore.FileStore.serializeAndStore(FileStore.java:1424)
+	... 6 more
+Caused by: java.lang.ClassNotFoundException: org.h2.mvstore.WriteBuffer
+	at org.codehaus.plexus.classworlds.strategy.SelfFirstStrategy.loadClass(SelfFirstStrategy.java:50)
+	at org.codehaus.plexus.classworlds.realm.ClassRealm.unsynchronizedLoadClass(ClassRealm.java:271)
+	at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:247)
+	at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:239)
+	... 8 more
+2024-05-08 17:37:55.678511+02:00 database: could not close the database
+org.h2.mvstore.MVStoreException: java.util.concurrent.ExecutionException: org.h2.mvstore.MVStoreException: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer [2.2.224/3] [2.2.224/3]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
+	at org.h2.mvstore.MVStore.storeNow(MVStore.java:852)
+	at org.h2.mvstore.MVStore.store(MVStore.java:808)
+	at org.h2.mvstore.MVStore.commit(MVStore.java:778)
+	at org.h2.mvstore.MVStore.commit(MVStore.java:770)
+	at org.h2.mvstore.db.Store.flush(Store.java:242)
+	at org.h2.engine.Database.checkpoint(Database.java:2249)
+	at org.h2.engine.Database.onShutdown(Database.java:1161)
+	at org.h2.engine.OnExitDatabaseCloser.onShutdown(OnExitDatabaseCloser.java:85)
+	at org.h2.engine.OnExitDatabaseCloser.run(OnExitDatabaseCloser.java:114)
+Caused by: java.util.concurrent.ExecutionException: org.h2.mvstore.MVStoreException: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer [2.2.224/3]
+	at java.base/java.util.concurrent.FutureTask.report(FutureTask.java:122)
+	at java.base/java.util.concurrent.FutureTask.get(FutureTask.java:191)
+	at org.h2.mvstore.FileStore.submitOrRun(FileStore.java:1392)
+	at org.h2.mvstore.FileStore.storeIt(FileStore.java:1375)
+	at org.h2.mvstore.MVStore.storeNow(MVStore.java:843)
+	... 8 more
+Caused by: org.h2.mvstore.MVStoreException: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer [2.2.224/3]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
+	at org.h2.mvstore.FileStore.serializeAndStore(FileStore.java:1441)
+	at org.h2.mvstore.FileStore.lambda$storeIt$2(FileStore.java:1376)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer
+	at org.h2.mvstore.FileStore.getWriteBuffer(FileStore.java:1202)
+	at org.h2.mvstore.FileStore.serializeAndStore(FileStore.java:1424)
+	... 6 more
+Caused by: java.lang.ClassNotFoundException: org.h2.mvstore.WriteBuffer
+	at org.codehaus.plexus.classworlds.strategy.SelfFirstStrategy.loadClass(SelfFirstStrategy.java:50)
+	at org.codehaus.plexus.classworlds.realm.ClassRealm.unsynchronizedLoadClass(ClassRealm.java:271)
+	at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:247)
+	at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:239)
+	... 8 more
+2024-05-08 17:38:42.891283+02:00 database: flush
+org.h2.message.DbException: GeneralError
+	at org.h2.message.DbException.convert(DbException.java:412)
+	at org.h2.mvstore.db.Store.lambda$new$0(Store.java:122)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:1546)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:371)
+	at org.h2.mvstore.FileStore.serializeAndStore(FileStore.java:1441)
+	at org.h2.mvstore.FileStore.lambda$storeIt$2(FileStore.java:1376)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+	Suppressed: java.lang.NoClassDefFoundError: org/h2/api/ErrorCode
+		at org.h2.message.DbException.getJdbcSQLException(DbException.java:487)
+		at org.h2.message.DbException.get(DbException.java:212)
+		at org.h2.message.DbException.convert(DbException.java:407)
+		... 10 more
+	Caused by: java.lang.ClassNotFoundException: org.h2.api.ErrorCode
+		at org.codehaus.plexus.classworlds.strategy.SelfFirstStrategy.loadClass(SelfFirstStrategy.java:50)
+		at org.codehaus.plexus.classworlds.realm.ClassRealm.unsynchronizedLoadClass(ClassRealm.java:271)
+		at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:247)
+		at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:239)
+		... 13 more
+Caused by: java.sql.SQLException: GeneralError
+	... 11 more
+Caused by: org.h2.mvstore.MVStoreException: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer [2.2.224/3]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
+	... 7 more
+Caused by: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer
+	at org.h2.mvstore.FileStore.getWriteBuffer(FileStore.java:1202)
+	at org.h2.mvstore.FileStore.serializeAndStore(FileStore.java:1424)
+	... 6 more
+Caused by: java.lang.ClassNotFoundException: org.h2.mvstore.WriteBuffer
+	at org.codehaus.plexus.classworlds.strategy.SelfFirstStrategy.loadClass(SelfFirstStrategy.java:50)
+	at org.codehaus.plexus.classworlds.realm.ClassRealm.unsynchronizedLoadClass(ClassRealm.java:271)
+	at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:247)
+	at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:239)
+	... 8 more
+2024-05-08 17:38:42.899474+02:00 database: could not close the database
+org.h2.mvstore.MVStoreException: java.util.concurrent.ExecutionException: org.h2.mvstore.MVStoreException: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer [2.2.224/3] [2.2.224/3]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
+	at org.h2.mvstore.MVStore.storeNow(MVStore.java:852)
+	at org.h2.mvstore.MVStore.store(MVStore.java:808)
+	at org.h2.mvstore.MVStore.commit(MVStore.java:778)
+	at org.h2.mvstore.MVStore.commit(MVStore.java:770)
+	at org.h2.mvstore.db.Store.flush(Store.java:242)
+	at org.h2.engine.Database.checkpoint(Database.java:2249)
+	at org.h2.engine.Database.onShutdown(Database.java:1161)
+	at org.h2.engine.OnExitDatabaseCloser.onShutdown(OnExitDatabaseCloser.java:85)
+	at org.h2.engine.OnExitDatabaseCloser.run(OnExitDatabaseCloser.java:114)
+Caused by: java.util.concurrent.ExecutionException: org.h2.mvstore.MVStoreException: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer [2.2.224/3]
+	at java.base/java.util.concurrent.FutureTask.report(FutureTask.java:122)
+	at java.base/java.util.concurrent.FutureTask.get(FutureTask.java:191)
+	at org.h2.mvstore.FileStore.submitOrRun(FileStore.java:1392)
+	at org.h2.mvstore.FileStore.storeIt(FileStore.java:1375)
+	at org.h2.mvstore.MVStore.storeNow(MVStore.java:843)
+	... 8 more
+Caused by: org.h2.mvstore.MVStoreException: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer [2.2.224/3]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
+	at org.h2.mvstore.FileStore.serializeAndStore(FileStore.java:1441)
+	at org.h2.mvstore.FileStore.lambda$storeIt$2(FileStore.java:1376)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer
+	at org.h2.mvstore.FileStore.getWriteBuffer(FileStore.java:1202)
+	at org.h2.mvstore.FileStore.serializeAndStore(FileStore.java:1424)
+	... 6 more
+Caused by: java.lang.ClassNotFoundException: org.h2.mvstore.WriteBuffer
+	at org.codehaus.plexus.classworlds.strategy.SelfFirstStrategy.loadClass(SelfFirstStrategy.java:50)
+	at org.codehaus.plexus.classworlds.realm.ClassRealm.unsynchronizedLoadClass(ClassRealm.java:271)
+	at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:247)
+	at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:239)
+	... 8 more
+2024-05-08 17:47:00.720493+02:00 database: flush
+org.h2.message.DbException: GeneralError
+	at org.h2.message.DbException.convert(DbException.java:412)
+	at org.h2.mvstore.db.Store.lambda$new$0(Store.java:122)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:1546)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:371)
+	at org.h2.mvstore.FileStore.serializeAndStore(FileStore.java:1441)
+	at org.h2.mvstore.FileStore.lambda$storeIt$2(FileStore.java:1376)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+	Suppressed: java.lang.NoClassDefFoundError: org/h2/api/ErrorCode
+		at org.h2.message.DbException.getJdbcSQLException(DbException.java:487)
+		at org.h2.message.DbException.get(DbException.java:212)
+		at org.h2.message.DbException.convert(DbException.java:407)
+		... 10 more
+	Caused by: java.lang.ClassNotFoundException: org.h2.api.ErrorCode
+		at org.codehaus.plexus.classworlds.strategy.SelfFirstStrategy.loadClass(SelfFirstStrategy.java:50)
+		at org.codehaus.plexus.classworlds.realm.ClassRealm.unsynchronizedLoadClass(ClassRealm.java:271)
+		at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:247)
+		at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:239)
+		... 13 more
+Caused by: java.sql.SQLException: GeneralError
+	... 11 more
+Caused by: org.h2.mvstore.MVStoreException: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer [2.2.224/3]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
+	... 7 more
+Caused by: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer
+	at org.h2.mvstore.FileStore.getWriteBuffer(FileStore.java:1202)
+	at org.h2.mvstore.FileStore.serializeAndStore(FileStore.java:1424)
+	... 6 more
+Caused by: java.lang.ClassNotFoundException: org.h2.mvstore.WriteBuffer
+	at org.codehaus.plexus.classworlds.strategy.SelfFirstStrategy.loadClass(SelfFirstStrategy.java:50)
+	at org.codehaus.plexus.classworlds.realm.ClassRealm.unsynchronizedLoadClass(ClassRealm.java:271)
+	at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:247)
+	at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:239)
+	... 8 more
+2024-05-08 17:47:00.726953+02:00 database: could not close the database
+org.h2.mvstore.MVStoreException: java.util.concurrent.ExecutionException: org.h2.mvstore.MVStoreException: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer [2.2.224/3] [2.2.224/3]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
+	at org.h2.mvstore.MVStore.storeNow(MVStore.java:852)
+	at org.h2.mvstore.MVStore.store(MVStore.java:808)
+	at org.h2.mvstore.MVStore.commit(MVStore.java:778)
+	at org.h2.mvstore.MVStore.commit(MVStore.java:770)
+	at org.h2.mvstore.db.Store.flush(Store.java:242)
+	at org.h2.engine.Database.checkpoint(Database.java:2249)
+	at org.h2.engine.Database.onShutdown(Database.java:1161)
+	at org.h2.engine.OnExitDatabaseCloser.onShutdown(OnExitDatabaseCloser.java:85)
+	at org.h2.engine.OnExitDatabaseCloser.run(OnExitDatabaseCloser.java:114)
+Caused by: java.util.concurrent.ExecutionException: org.h2.mvstore.MVStoreException: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer [2.2.224/3]
+	at java.base/java.util.concurrent.FutureTask.report(FutureTask.java:122)
+	at java.base/java.util.concurrent.FutureTask.get(FutureTask.java:191)
+	at org.h2.mvstore.FileStore.submitOrRun(FileStore.java:1392)
+	at org.h2.mvstore.FileStore.storeIt(FileStore.java:1375)
+	at org.h2.mvstore.MVStore.storeNow(MVStore.java:843)
+	... 8 more
+Caused by: org.h2.mvstore.MVStoreException: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer [2.2.224/3]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
+	at org.h2.mvstore.FileStore.serializeAndStore(FileStore.java:1441)
+	at org.h2.mvstore.FileStore.lambda$storeIt$2(FileStore.java:1376)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer
+	at org.h2.mvstore.FileStore.getWriteBuffer(FileStore.java:1202)
+	at org.h2.mvstore.FileStore.serializeAndStore(FileStore.java:1424)
+	... 6 more
+Caused by: java.lang.ClassNotFoundException: org.h2.mvstore.WriteBuffer
+	at org.codehaus.plexus.classworlds.strategy.SelfFirstStrategy.loadClass(SelfFirstStrategy.java:50)
+	at org.codehaus.plexus.classworlds.realm.ClassRealm.unsynchronizedLoadClass(ClassRealm.java:271)
+	at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:247)
+	at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:239)
+	... 8 more
+2024-05-08 17:47:13.976987+02:00 database: flush
+org.h2.message.DbException: GeneralError
+	at org.h2.message.DbException.convert(DbException.java:412)
+	at org.h2.mvstore.db.Store.lambda$new$0(Store.java:122)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:1546)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:371)
+	at org.h2.mvstore.FileStore.serializeAndStore(FileStore.java:1441)
+	at org.h2.mvstore.FileStore.lambda$storeIt$2(FileStore.java:1376)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+	Suppressed: java.lang.NoClassDefFoundError: org/h2/api/ErrorCode
+		at org.h2.message.DbException.getJdbcSQLException(DbException.java:487)
+		at org.h2.message.DbException.get(DbException.java:212)
+		at org.h2.message.DbException.convert(DbException.java:407)
+		... 10 more
+	Caused by: java.lang.ClassNotFoundException: org.h2.api.ErrorCode
+		at org.codehaus.plexus.classworlds.strategy.SelfFirstStrategy.loadClass(SelfFirstStrategy.java:50)
+		at org.codehaus.plexus.classworlds.realm.ClassRealm.unsynchronizedLoadClass(ClassRealm.java:271)
+		at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:247)
+		at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:239)
+		... 13 more
+Caused by: java.sql.SQLException: GeneralError
+	... 11 more
+Caused by: org.h2.mvstore.MVStoreException: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer [2.2.224/3]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
+	... 7 more
+Caused by: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer
+	at org.h2.mvstore.FileStore.getWriteBuffer(FileStore.java:1202)
+	at org.h2.mvstore.FileStore.serializeAndStore(FileStore.java:1424)
+	... 6 more
+Caused by: java.lang.ClassNotFoundException: org.h2.mvstore.WriteBuffer
+	at org.codehaus.plexus.classworlds.strategy.SelfFirstStrategy.loadClass(SelfFirstStrategy.java:50)
+	at org.codehaus.plexus.classworlds.realm.ClassRealm.unsynchronizedLoadClass(ClassRealm.java:271)
+	at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:247)
+	at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:239)
+	... 8 more
+2024-05-08 17:47:13.983524+02:00 database: could not close the database
+org.h2.mvstore.MVStoreException: java.util.concurrent.ExecutionException: org.h2.mvstore.MVStoreException: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer [2.2.224/3] [2.2.224/3]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
+	at org.h2.mvstore.MVStore.storeNow(MVStore.java:852)
+	at org.h2.mvstore.MVStore.store(MVStore.java:808)
+	at org.h2.mvstore.MVStore.commit(MVStore.java:778)
+	at org.h2.mvstore.MVStore.commit(MVStore.java:770)
+	at org.h2.mvstore.db.Store.flush(Store.java:242)
+	at org.h2.engine.Database.checkpoint(Database.java:2249)
+	at org.h2.engine.Database.onShutdown(Database.java:1161)
+	at org.h2.engine.OnExitDatabaseCloser.onShutdown(OnExitDatabaseCloser.java:85)
+	at org.h2.engine.OnExitDatabaseCloser.run(OnExitDatabaseCloser.java:114)
+Caused by: java.util.concurrent.ExecutionException: org.h2.mvstore.MVStoreException: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer [2.2.224/3]
+	at java.base/java.util.concurrent.FutureTask.report(FutureTask.java:122)
+	at java.base/java.util.concurrent.FutureTask.get(FutureTask.java:191)
+	at org.h2.mvstore.FileStore.submitOrRun(FileStore.java:1392)
+	at org.h2.mvstore.FileStore.storeIt(FileStore.java:1375)
+	at org.h2.mvstore.MVStore.storeNow(MVStore.java:843)
+	... 8 more
+Caused by: org.h2.mvstore.MVStoreException: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer [2.2.224/3]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
+	at org.h2.mvstore.FileStore.serializeAndStore(FileStore.java:1441)
+	at org.h2.mvstore.FileStore.lambda$storeIt$2(FileStore.java:1376)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer
+	at org.h2.mvstore.FileStore.getWriteBuffer(FileStore.java:1202)
+	at org.h2.mvstore.FileStore.serializeAndStore(FileStore.java:1424)
+	... 6 more
+Caused by: java.lang.ClassNotFoundException: org.h2.mvstore.WriteBuffer
+	at org.codehaus.plexus.classworlds.strategy.SelfFirstStrategy.loadClass(SelfFirstStrategy.java:50)
+	at org.codehaus.plexus.classworlds.realm.ClassRealm.unsynchronizedLoadClass(ClassRealm.java:271)
+	at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:247)
+	at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:239)
+	... 8 more
+2024-05-08 17:49:04.655387+02:00 database: flush
+org.h2.message.DbException: GeneralError
+	at org.h2.message.DbException.convert(DbException.java:412)
+	at org.h2.mvstore.db.Store.lambda$new$0(Store.java:122)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:1546)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:371)
+	at org.h2.mvstore.FileStore.serializeAndStore(FileStore.java:1441)
+	at org.h2.mvstore.FileStore.lambda$storeIt$2(FileStore.java:1376)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+	Suppressed: java.lang.NoClassDefFoundError: org/h2/api/ErrorCode
+		at org.h2.message.DbException.getJdbcSQLException(DbException.java:487)
+		at org.h2.message.DbException.get(DbException.java:212)
+		at org.h2.message.DbException.convert(DbException.java:407)
+		... 10 more
+	Caused by: java.lang.ClassNotFoundException: org.h2.api.ErrorCode
+		at org.codehaus.plexus.classworlds.strategy.SelfFirstStrategy.loadClass(SelfFirstStrategy.java:50)
+		at org.codehaus.plexus.classworlds.realm.ClassRealm.unsynchronizedLoadClass(ClassRealm.java:271)
+		at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:247)
+		at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:239)
+		... 13 more
+Caused by: java.sql.SQLException: GeneralError
+	... 11 more
+Caused by: org.h2.mvstore.MVStoreException: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer [2.2.224/3]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
+	... 7 more
+Caused by: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer
+	at org.h2.mvstore.FileStore.getWriteBuffer(FileStore.java:1202)
+	at org.h2.mvstore.FileStore.serializeAndStore(FileStore.java:1424)
+	... 6 more
+Caused by: java.lang.ClassNotFoundException: org.h2.mvstore.WriteBuffer
+	at org.codehaus.plexus.classworlds.strategy.SelfFirstStrategy.loadClass(SelfFirstStrategy.java:50)
+	at org.codehaus.plexus.classworlds.realm.ClassRealm.unsynchronizedLoadClass(ClassRealm.java:271)
+	at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:247)
+	at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:239)
+	... 8 more
+2024-05-08 17:49:04.662719+02:00 database: could not close the database
+org.h2.mvstore.MVStoreException: java.util.concurrent.ExecutionException: org.h2.mvstore.MVStoreException: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer [2.2.224/3] [2.2.224/3]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
+	at org.h2.mvstore.MVStore.storeNow(MVStore.java:852)
+	at org.h2.mvstore.MVStore.store(MVStore.java:808)
+	at org.h2.mvstore.MVStore.commit(MVStore.java:778)
+	at org.h2.mvstore.MVStore.commit(MVStore.java:770)
+	at org.h2.mvstore.db.Store.flush(Store.java:242)
+	at org.h2.engine.Database.checkpoint(Database.java:2249)
+	at org.h2.engine.Database.onShutdown(Database.java:1161)
+	at org.h2.engine.OnExitDatabaseCloser.onShutdown(OnExitDatabaseCloser.java:85)
+	at org.h2.engine.OnExitDatabaseCloser.run(OnExitDatabaseCloser.java:114)
+Caused by: java.util.concurrent.ExecutionException: org.h2.mvstore.MVStoreException: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer [2.2.224/3]
+	at java.base/java.util.concurrent.FutureTask.report(FutureTask.java:122)
+	at java.base/java.util.concurrent.FutureTask.get(FutureTask.java:191)
+	at org.h2.mvstore.FileStore.submitOrRun(FileStore.java:1392)
+	at org.h2.mvstore.FileStore.storeIt(FileStore.java:1375)
+	at org.h2.mvstore.MVStore.storeNow(MVStore.java:843)
+	... 8 more
+Caused by: org.h2.mvstore.MVStoreException: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer [2.2.224/3]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
+	at org.h2.mvstore.FileStore.serializeAndStore(FileStore.java:1441)
+	at org.h2.mvstore.FileStore.lambda$storeIt$2(FileStore.java:1376)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer
+	at org.h2.mvstore.FileStore.getWriteBuffer(FileStore.java:1202)
+	at org.h2.mvstore.FileStore.serializeAndStore(FileStore.java:1424)
+	... 6 more
+Caused by: java.lang.ClassNotFoundException: org.h2.mvstore.WriteBuffer
+	at org.codehaus.plexus.classworlds.strategy.SelfFirstStrategy.loadClass(SelfFirstStrategy.java:50)
+	at org.codehaus.plexus.classworlds.realm.ClassRealm.unsynchronizedLoadClass(ClassRealm.java:271)
+	at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:247)
+	at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:239)
+	... 8 more
+2024-05-08 17:51:19.468800+02:00 database: flush
+org.h2.message.DbException: GeneralError
+	at org.h2.message.DbException.convert(DbException.java:412)
+	at org.h2.mvstore.db.Store.lambda$new$0(Store.java:122)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:1546)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:371)
+	at org.h2.mvstore.FileStore.serializeAndStore(FileStore.java:1441)
+	at org.h2.mvstore.FileStore.lambda$storeIt$2(FileStore.java:1376)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+	Suppressed: java.lang.NoClassDefFoundError: org/h2/api/ErrorCode
+		at org.h2.message.DbException.getJdbcSQLException(DbException.java:487)
+		at org.h2.message.DbException.get(DbException.java:212)
+		at org.h2.message.DbException.convert(DbException.java:407)
+		... 10 more
+	Caused by: java.lang.ClassNotFoundException: org.h2.api.ErrorCode
+		at org.codehaus.plexus.classworlds.strategy.SelfFirstStrategy.loadClass(SelfFirstStrategy.java:50)
+		at org.codehaus.plexus.classworlds.realm.ClassRealm.unsynchronizedLoadClass(ClassRealm.java:271)
+		at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:247)
+		at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:239)
+		... 13 more
+Caused by: java.sql.SQLException: GeneralError
+	... 11 more
+Caused by: org.h2.mvstore.MVStoreException: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer [2.2.224/3]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
+	... 7 more
+Caused by: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer
+	at org.h2.mvstore.FileStore.getWriteBuffer(FileStore.java:1202)
+	at org.h2.mvstore.FileStore.serializeAndStore(FileStore.java:1424)
+	... 6 more
+Caused by: java.lang.ClassNotFoundException: org.h2.mvstore.WriteBuffer
+	at org.codehaus.plexus.classworlds.strategy.SelfFirstStrategy.loadClass(SelfFirstStrategy.java:50)
+	at org.codehaus.plexus.classworlds.realm.ClassRealm.unsynchronizedLoadClass(ClassRealm.java:271)
+	at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:247)
+	at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:239)
+	... 8 more
+2024-05-08 17:51:19.476397+02:00 database: could not close the database
+org.h2.mvstore.MVStoreException: java.util.concurrent.ExecutionException: org.h2.mvstore.MVStoreException: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer [2.2.224/3] [2.2.224/3]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
+	at org.h2.mvstore.MVStore.storeNow(MVStore.java:852)
+	at org.h2.mvstore.MVStore.store(MVStore.java:808)
+	at org.h2.mvstore.MVStore.commit(MVStore.java:778)
+	at org.h2.mvstore.MVStore.commit(MVStore.java:770)
+	at org.h2.mvstore.db.Store.flush(Store.java:242)
+	at org.h2.engine.Database.checkpoint(Database.java:2249)
+	at org.h2.engine.Database.onShutdown(Database.java:1161)
+	at org.h2.engine.OnExitDatabaseCloser.onShutdown(OnExitDatabaseCloser.java:85)
+	at org.h2.engine.OnExitDatabaseCloser.run(OnExitDatabaseCloser.java:114)
+Caused by: java.util.concurrent.ExecutionException: org.h2.mvstore.MVStoreException: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer [2.2.224/3]
+	at java.base/java.util.concurrent.FutureTask.report(FutureTask.java:122)
+	at java.base/java.util.concurrent.FutureTask.get(FutureTask.java:191)
+	at org.h2.mvstore.FileStore.submitOrRun(FileStore.java:1392)
+	at org.h2.mvstore.FileStore.storeIt(FileStore.java:1375)
+	at org.h2.mvstore.MVStore.storeNow(MVStore.java:843)
+	... 8 more
+Caused by: org.h2.mvstore.MVStoreException: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer [2.2.224/3]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
+	at org.h2.mvstore.FileStore.serializeAndStore(FileStore.java:1441)
+	at org.h2.mvstore.FileStore.lambda$storeIt$2(FileStore.java:1376)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer
+	at org.h2.mvstore.FileStore.getWriteBuffer(FileStore.java:1202)
+	at org.h2.mvstore.FileStore.serializeAndStore(FileStore.java:1424)
+	... 6 more
+Caused by: java.lang.ClassNotFoundException: org.h2.mvstore.WriteBuffer
+	... 8 more
+2024-05-08 17:53:33.676120+02:00 database: flush
+org.h2.message.DbException: GeneralError
+	at org.h2.message.DbException.convert(DbException.java:412)
+	at org.h2.mvstore.db.Store.lambda$new$0(Store.java:122)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:1546)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:371)
+	at org.h2.mvstore.FileStore.serializeAndStore(FileStore.java:1441)
+	at org.h2.mvstore.FileStore.lambda$storeIt$2(FileStore.java:1376)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+	Suppressed: java.lang.NoClassDefFoundError: org/h2/api/ErrorCode
+		at org.h2.message.DbException.getJdbcSQLException(DbException.java:487)
+		at org.h2.message.DbException.get(DbException.java:212)
+		at org.h2.message.DbException.convert(DbException.java:407)
+		... 10 more
+	Caused by: java.lang.ClassNotFoundException: org.h2.api.ErrorCode
+		at org.codehaus.plexus.classworlds.strategy.SelfFirstStrategy.loadClass(SelfFirstStrategy.java:50)
+		at org.codehaus.plexus.classworlds.realm.ClassRealm.unsynchronizedLoadClass(ClassRealm.java:271)
+		at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:247)
+		at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:239)
+		... 13 more
+Caused by: java.sql.SQLException: GeneralError
+	... 11 more
+Caused by: org.h2.mvstore.MVStoreException: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer [2.2.224/3]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
+	... 7 more
+Caused by: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer
+	at org.h2.mvstore.FileStore.getWriteBuffer(FileStore.java:1202)
+	at org.h2.mvstore.FileStore.serializeAndStore(FileStore.java:1424)
+	... 6 more
+Caused by: java.lang.ClassNotFoundException: org.h2.mvstore.WriteBuffer
+	at org.codehaus.plexus.classworlds.strategy.SelfFirstStrategy.loadClass(SelfFirstStrategy.java:50)
+	at org.codehaus.plexus.classworlds.realm.ClassRealm.unsynchronizedLoadClass(ClassRealm.java:271)
+	at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:247)
+	at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:239)
+	... 8 more
+2024-05-08 17:53:33.683673+02:00 database: could not close the database
+org.h2.mvstore.MVStoreException: java.util.concurrent.ExecutionException: org.h2.mvstore.MVStoreException: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer [2.2.224/3] [2.2.224/3]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
+	at org.h2.mvstore.MVStore.storeNow(MVStore.java:852)
+	at org.h2.mvstore.MVStore.store(MVStore.java:808)
+	at org.h2.mvstore.MVStore.commit(MVStore.java:778)
+	at org.h2.mvstore.MVStore.commit(MVStore.java:770)
+	at org.h2.mvstore.db.Store.flush(Store.java:242)
+	at org.h2.engine.Database.checkpoint(Database.java:2249)
+	at org.h2.engine.Database.onShutdown(Database.java:1161)
+	at org.h2.engine.OnExitDatabaseCloser.onShutdown(OnExitDatabaseCloser.java:85)
+	at org.h2.engine.OnExitDatabaseCloser.run(OnExitDatabaseCloser.java:114)
+Caused by: java.util.concurrent.ExecutionException: org.h2.mvstore.MVStoreException: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer [2.2.224/3]
+	at java.base/java.util.concurrent.FutureTask.report(FutureTask.java:122)
+	at java.base/java.util.concurrent.FutureTask.get(FutureTask.java:191)
+	at org.h2.mvstore.FileStore.submitOrRun(FileStore.java:1392)
+	at org.h2.mvstore.FileStore.storeIt(FileStore.java:1375)
+	at org.h2.mvstore.MVStore.storeNow(MVStore.java:843)
+	... 8 more
+Caused by: org.h2.mvstore.MVStoreException: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer [2.2.224/3]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
+	at org.h2.mvstore.FileStore.serializeAndStore(FileStore.java:1441)
+	at org.h2.mvstore.FileStore.lambda$storeIt$2(FileStore.java:1376)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer
+	at org.h2.mvstore.FileStore.getWriteBuffer(FileStore.java:1202)
+	at org.h2.mvstore.FileStore.serializeAndStore(FileStore.java:1424)
+	... 6 more
+Caused by: java.lang.ClassNotFoundException: org.h2.mvstore.WriteBuffer
+	at org.codehaus.plexus.classworlds.strategy.SelfFirstStrategy.loadClass(SelfFirstStrategy.java:50)
+	at org.codehaus.plexus.classworlds.realm.ClassRealm.unsynchronizedLoadClass(ClassRealm.java:271)
+	at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:247)
+	at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:239)
+	... 8 more
+2024-05-08 18:15:31.155472+02:00 database: flush
+org.h2.message.DbException: GeneralError
+	at org.h2.message.DbException.convert(DbException.java:412)
+	at org.h2.mvstore.db.Store.lambda$new$0(Store.java:122)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:1546)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:371)
+	at org.h2.mvstore.FileStore.serializeAndStore(FileStore.java:1441)
+	at org.h2.mvstore.FileStore.lambda$storeIt$2(FileStore.java:1376)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+	Suppressed: java.lang.NoClassDefFoundError: org/h2/api/ErrorCode
+		at org.h2.message.DbException.getJdbcSQLException(DbException.java:487)
+		at org.h2.message.DbException.get(DbException.java:212)
+		at org.h2.message.DbException.convert(DbException.java:407)
+		... 10 more
+	Caused by: java.lang.ClassNotFoundException: org.h2.api.ErrorCode
+		at org.codehaus.plexus.classworlds.strategy.SelfFirstStrategy.loadClass(SelfFirstStrategy.java:50)
+		at org.codehaus.plexus.classworlds.realm.ClassRealm.unsynchronizedLoadClass(ClassRealm.java:271)
+		at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:247)
+		at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:239)
+		... 13 more
+Caused by: java.sql.SQLException: GeneralError
+	... 11 more
+Caused by: org.h2.mvstore.MVStoreException: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer [2.2.224/3]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
+	... 7 more
+Caused by: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer
+	at org.h2.mvstore.FileStore.getWriteBuffer(FileStore.java:1202)
+	at org.h2.mvstore.FileStore.serializeAndStore(FileStore.java:1424)
+	... 6 more
+Caused by: java.lang.ClassNotFoundException: org.h2.mvstore.WriteBuffer
+	at org.codehaus.plexus.classworlds.strategy.SelfFirstStrategy.loadClass(SelfFirstStrategy.java:50)
+	at org.codehaus.plexus.classworlds.realm.ClassRealm.unsynchronizedLoadClass(ClassRealm.java:271)
+	at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:247)
+	at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:239)
+	... 8 more
+2024-05-08 18:15:31.162480+02:00 database: could not close the database
+org.h2.mvstore.MVStoreException: java.util.concurrent.ExecutionException: org.h2.mvstore.MVStoreException: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer [2.2.224/3] [2.2.224/3]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
+	at org.h2.mvstore.MVStore.storeNow(MVStore.java:852)
+	at org.h2.mvstore.MVStore.store(MVStore.java:808)
+	at org.h2.mvstore.MVStore.commit(MVStore.java:778)
+	at org.h2.mvstore.MVStore.commit(MVStore.java:770)
+	at org.h2.mvstore.db.Store.flush(Store.java:242)
+	at org.h2.engine.Database.checkpoint(Database.java:2249)
+	at org.h2.engine.Database.onShutdown(Database.java:1161)
+	at org.h2.engine.OnExitDatabaseCloser.onShutdown(OnExitDatabaseCloser.java:85)
+	at org.h2.engine.OnExitDatabaseCloser.run(OnExitDatabaseCloser.java:114)
+Caused by: java.util.concurrent.ExecutionException: org.h2.mvstore.MVStoreException: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer [2.2.224/3]
+	at java.base/java.util.concurrent.FutureTask.report(FutureTask.java:122)
+	at java.base/java.util.concurrent.FutureTask.get(FutureTask.java:191)
+	at org.h2.mvstore.FileStore.submitOrRun(FileStore.java:1392)
+	at org.h2.mvstore.FileStore.storeIt(FileStore.java:1375)
+	at org.h2.mvstore.MVStore.storeNow(MVStore.java:843)
+	... 8 more
+Caused by: org.h2.mvstore.MVStoreException: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer [2.2.224/3]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:996)
+	at org.h2.mvstore.FileStore.serializeAndStore(FileStore.java:1441)
+	at org.h2.mvstore.FileStore.lambda$storeIt$2(FileStore.java:1376)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: java.lang.NoClassDefFoundError: org/h2/mvstore/WriteBuffer
+	at org.h2.mvstore.FileStore.getWriteBuffer(FileStore.java:1202)
+	at org.h2.mvstore.FileStore.serializeAndStore(FileStore.java:1424)
+	... 6 more
+Caused by: java.lang.ClassNotFoundException: org.h2.mvstore.WriteBuffer
+	at org.codehaus.plexus.classworlds.strategy.SelfFirstStrategy.loadClass(SelfFirstStrategy.java:50)
+	at org.codehaus.plexus.classworlds.realm.ClassRealm.unsynchronizedLoadClass(ClassRealm.java:271)
+	at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:247)
+	at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:239)
+	... 8 more
+2024-05-08 18:37:12 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "PRICES" ya existe
+Table "PRICES" already exists; SQL statement:
+CREATE TABLE prices (
+                        id INT AUTO_INCREMENT PRIMARY KEY,
+                        product_id INT NOT NULL,
+                        brand_id INT NOT NULL,
+                        start_date TIMESTAMP NOT NULL,
+                        end_date TIMESTAMP NOT NULL,
+                        price DECIMAL(10, 2) NOT NULL,
+                        priority INT,
+                        currency VARCHAR(3) NOT NULL,
+                        price_list INT
+) [42101-220]
+2024-05-08 18:42:26 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "PRICES" ya existe
+Table "PRICES" already exists; SQL statement:
+CREATE TABLE prices (
+                        id INT AUTO_INCREMENT PRIMARY KEY,
+                        product_id INT NOT NULL,
+                        brand_id INT NOT NULL,
+                        start_date TIMESTAMP NOT NULL,
+                        end_date TIMESTAMP NOT NULL,
+                        price DECIMAL(10, 2) NOT NULL,
+                        priority INT,
+                        currency VARCHAR(3) NOT NULL,
+                        price_list INT
+) [42101-220]
